@@ -1,0 +1,15 @@
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { Minus, Plus, Trash2 } from "lucide-react";
+import { useState } from "react";
+import { Button } from "../components/button";
+import { useCart } from "../context/cart";
+
+export const Route = createFileRoute("/order")({ head: () => ({ meta: [
+  { title: "Order Online — Aurum" }, { name: "description", content: "Review your Aurum order, set delivery details, and continue to checkout." }, { property: "og:title", content: "Order Online — Aurum" }, { property: "og:description", content: "Bring the Aurum table home." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" },
+]}), component: OrderPage });
+
+function OrderPage() {
+  const { lines, add, decrement, remove, total, clear } = useCart(); const [placed, setPlaced] = useState(false);
+  if (placed) return <div className="confirmation page-width"><p className="eyebrow">Order received</p><h1>Thank you.</h1><p>Your preview order has been prepared successfully. No payment was charged.</p><Button onClick={() => { clear(); setPlaced(false); }}>Start a new order</Button></div>;
+  return <><header className="page-hero page-width"><p className="eyebrow">Order online</p><h1 className="page-title">Your table, at home.</h1></header><div className="order-grid page-width"> <section className="surface cart-panel"><h2>Your order <span>{lines.reduce((sum, line) => sum + line.quantity, 0)} items</span></h2>{lines.length === 0 ? <div className="empty-state"><p>Your order is waiting for its first dish.</p><Button asChild><Link to="/menu">Explore the menu</Link></Button></div> : <div className="cart-lines">{lines.map((line) => <div className="cart-line" key={line.id}><div><h3>{line.name}</h3><p>₹{line.price} each</p></div><div className="quantity"><Button variant="icon" onClick={() => decrement(line.id)} aria-label={`Decrease ${line.name}`}><Minus size={14} /></Button><span>{line.quantity}</span><Button variant="icon" onClick={() => add(line)} aria-label={`Increase ${line.name}`}><Plus size={14} /></Button></div><strong>₹{line.price * line.quantity}</strong><Button variant="ghost" onClick={() => remove(line.id)} aria-label={`Remove ${line.name}`}><Trash2 size={16} /></Button></div>)}</div>}</section><aside className="surface checkout-panel"><h2>Checkout</h2><div className="checkout-form"><label className="form-label">Full name<input className="form-control" placeholder="Your name" /></label><label className="form-label">Phone<input className="form-control" type="tel" placeholder="Mobile number" /></label><label className="form-label">Delivery address<textarea className="form-control textarea" placeholder="Flat, street, area, city" /></label></div><div className="totals"><p><span>Subtotal</span><strong>₹{total}</strong></p><p><span>Delivery</span><strong>{total ? "₹40" : "₹0"}</strong></p><p className="grand-total"><span>Total</span><strong>₹{total ? total + 40 : 0}</strong></p></div><Button disabled={!lines.length} onClick={() => setPlaced(true)}>Place preview order</Button><small>Payment is not charged in this preview.</small></aside></div></>;
+}
