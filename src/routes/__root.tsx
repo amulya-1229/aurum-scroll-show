@@ -13,6 +13,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { CartProvider } from "../context/cart";
 import { SiteShell } from "../components/site-shell";
+import { ChatWidget } from "../components/chat-widget";
 
 function NotFoundComponent() {
   return (
@@ -124,6 +125,7 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <CartProvider>
         <SiteShell><Outlet /></SiteShell>
+        <ChatWidget />
       </CartProvider>
     </QueryClientProvider>
   );
