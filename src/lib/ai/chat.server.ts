@@ -48,7 +48,7 @@ export async function handleChat(request: Request) {
   } catch {
     return new Response("Invalid request", { status: 400 });
   }
-  const apiKey = process.env.LOVABLE_API_KEY;
+  const apiKey = process.env['LOVABLE_API_KEY'];
   if (!apiKey) return new Response("Chat is not configured", { status: 500 });
 
   const runIdFetch = createLovableAiGatewayRunIdFetch(getLovableAiGatewayRunId(request));
