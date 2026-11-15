@@ -1,14 +1,20 @@
-# Welcome to your Lovable project
+# Aurum Motion Site
+
+create a stylish website which has motion items that move on scrolling website with the idea that is provided attached file. Change the restaurant name from "masala route" to "Aurum" 
+
+hey add all the menu items to the menu and list them according to the order that is been given to the menu and i again say that the project must build with the same tech stack that is given in the project document
 
 This project was built with [Lovable](https://lovable.dev).
 
+**Live app**: https://aurum-scroll-show.lovable.app
+
 ## Build with Lovable
 
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
+Continue developing this project in the [Lovable editor](https://lovable.dev/projects/b3df17e6-8721-4c99-bfa3-c79c882ec482).
 
 - **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
+- **Stay in sync**: every change made in Lovable is committed straight to this repository.
+- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
 
 ## Development
 
@@ -20,10 +26,3 @@ cd <repository-name>
 npm i
 npm run dev
 ```
-
-## Built with
-
-- TanStack Start
-- TypeScript
-- React
-- Tailwind CSS
